@@ -6,3 +6,5 @@ class toDoItem {
         this.priority = priority;
     }
 }
+
+export {toDoItem};

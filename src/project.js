@@ -1,8 +1,8 @@
 import { toDoItem } from "./to-do-items";
 
 class Project {
-    contructor (title, index) {
-        this.title = title;
+    constructor(name, index) {
+        this.name = name;
         this.index = index;
         this.list = [];
     }
@@ -12,9 +12,11 @@ class Project {
         this.list.push(newToDo);
     }
 
-    removeToDo(index) {
+    removeToDo(ind) {
         this.list.splice(ind, 1);
     }
+
 }
 
 export {Project};
+export{toDoItem};
