@@ -21,6 +21,7 @@ const newProjectDialog = document.querySelector(".newProject");
 const newProjectForm = document.querySelector(".newProjectForm");
 const projectSidebar = document.querySelector(".projectSidebar");
 const currentProject = document.querySelector(".projectTitle");
+const defaultSidebarItem = document.querySelector(".defaultSidebarItem");
 
 // defaults
 let projectList = [];
@@ -159,6 +160,13 @@ toDoForm.addEventListener("submit", (event) => {
 
 })
 
+//default sidebar click
+
+defaultSidebarItem.addEventListener("click", () => {
+    thisProject = defaultProject;
+    displayProject();
+})
+
 //NEW PROJECT
 
 //new project btn
@@ -208,7 +216,15 @@ newProjectForm.addEventListener("submit", (event) => {
     sidebarItem.textContent = projectName.value;
     projectSidebar.appendChild(sidebarItem);
 
-    //add event listener to sidebar ITEM
+    //add event listener to sidebar ITEM to bring up current project
+
+    sidebarItem.addEventListener("click", () => {
+        thisProject = nextProject;
+        displayProject();
+        sidebarItem.classList.add("selectedSidebarItem");
+    })
+
+    //MAKE THE THE THISPROJECT
 
     console.log(nextProject);
 
