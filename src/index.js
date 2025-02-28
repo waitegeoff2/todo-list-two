@@ -6,6 +6,8 @@ import { Project } from "./project";
 import trashImg from "./images/trash-can-outline.svg";
 import checkImg from "./images/check-outline.svg";
 
+//HTML elements
+
 const toDoHeader = document.querySelector(".toDoSection");
 const toDoList = document.querySelector(".toDoList");
 const toDoLabels = document.querySelector(".toDoLabels");
@@ -20,8 +22,12 @@ const newProjectForm = document.querySelector(".newProjectForm");
 const projectSidebar = document.querySelector(".projectSidebar");
 const currentProject = document.querySelector(".projectTitle");
 
-// for storing each project
+// defaults
 let projectList = [];
+//default project
+let defaultProject = new Project("default");
+// this is the current project we are displaying on DOM
+let thisProject = defaultProject;
 
 //create a project and add to project array
 
@@ -29,13 +35,7 @@ function createProject(name) {
     let newProject = new Project(name);
     projectList.push(newProject);
     return newProject;
-}
-
-let defaultProject = new Project("default");
-
-let thisProject = defaultProject;
-
-console.log(defaultProject);
+} 
 
 //displaying a project on the to-do page
 
@@ -201,16 +201,18 @@ newProjectForm.addEventListener("submit", (event) => {
     
     toDoList.innerHTML = "";
 
-    //add Header to page
-
-    const projectTitle = document.createElement("h3");
-    projectTitle.classList.add("projectTitle");
-    projectTitle.textContent = projectName.value;
-    toDoLabels.appendChild(projectTitle);
-
     //add sidebar ITEM
 
+    const sidebarItem = document.createElement("h3");
+    sidebarItem.classList.add("sidebarItem");
+    sidebarItem.textContent = projectName.value;
+    projectSidebar.appendChild(sidebarItem);
+
+    //add event listener to sidebar ITEM
+
     console.log(nextProject);
+
+    newProjectForm.reset();
     
 })
 
