@@ -23,27 +23,18 @@ const projectSidebar = document.querySelector(".projectSidebar");
 const currentProject = document.querySelector(".projectTitle");
 const defaultSidebarItem = document.querySelector(".defaultSidebarItem");
 
-// defaults
-let projectList = [];
-//default project
+// DEFAULTS
+// let projectList = [];
 let defaultProject = new Project("default");
 // this is the current project we are displaying on DOM
 let thisProject = defaultProject;
-
-//create a project and add to project array
-
-function createProject(name) {
-    let newProject = new Project(name);
-    projectList.push(newProject);
-    return newProject;
-} 
 
 //displaying a project on the to-do page
 
 function displayProject() {
     toDoList.innerHTML = ""; 
-    
-    console.log(defaultProject);
+
+    //appending DOM items for each to-do item in project object
 
     function appendToList(arrayItem) {
         console.log(defaultProject.list.indexOf(arrayItem));
@@ -64,11 +55,18 @@ function displayProject() {
         listItemTitle.textContent = arrayItem.title;
         leftDiv.appendChild(listItemTitle);
 
+        //description
+
+        const listItemDescription = document.createElement("h3");
+        listItemDescription.classList.add("listItemDescription");
+        listItemDescription.textContent = arrayItem.description;
+        leftDiv.appendChild(listItemDescription);
+
         //due date
 
         const listItemDate = document.createElement("span");
         listItemDate.classList.add("listItemDate");
-        listItemDate.textContent = "Due date:" + arrayItem.dueDate;
+        listItemDate.textContent = "Due date: " + arrayItem.dueDate;
         leftDiv.appendChild(listItemDate);
 
         //right div
@@ -95,29 +93,32 @@ function displayProject() {
         checkImage.classList.add("checkImage");
         rightDiv.appendChild(checkImage);
 
-        //make finished functional
+        //make finished functional (YOURE NOT CHANGING THE ARRAY ITEM YOURE JUST CHANGING THE CSS,
+        // CHECK READ BOOK FUNCTION)
 
         checkImage.addEventListener("click", () => {
-            if (listItemDate.classList.contains("completedTask") && listItemTitle.classList.contains("completedTask")) {
+            if (listItemDate.classList.contains("completedTask") && listItemTitle.classList.contains("completedTask") && listItemDescription.classList.contains("completedTask")) {
                 listItemDate.classList.remove("completedTask");
                 listItemTitle.classList.remove("completedTask");
             } else {
                 listItemDate.classList.add("completedTask");
                 listItemTitle.classList.add("completedTask");
+                listItemDescription.classList.add("completedTask");
             };
         })
 
 
     }
 
+    //go through to-do array in current working project object
+
     thisProject.list.forEach(appendToList);
 
-    //project(HTLM NAME).list.forEAch
 }
 
-// DOM STUFF
+// **********DOM STUFF****** //
 
-//to do buttons
+//TO DO BUTTONS
 
 //bring up modal 
 
@@ -139,6 +140,8 @@ toDoForm.addEventListener("submit", (event) => {
 
     addToDoDialog.close();
 
+    //collect form values
+
     const itemTitle = document.querySelector("#toDoTitle");
     const itemDescription = document.querySelector("#toDoDescription");
     const itemDue = document.querySelector("#toDoDueDate");
@@ -149,18 +152,22 @@ toDoForm.addEventListener("submit", (event) => {
     let dueDate = itemDue.value;
     let priority = toDoPriority.value;
 
+    //use form values to add to-to item to current working project object
+
     thisProject.addToDo(title, description, dueDate, priority);
 
     console.log(thisProject);
 
     toDoForm.reset();
 
+    //display current working project object
+
     displayProject();
 
 
 })
 
-//default sidebar click
+//DEFAULT SIDEBAR BUTTON
 
 defaultSidebarItem.addEventListener("click", () => {
     thisProject = defaultProject;
@@ -168,6 +175,8 @@ defaultSidebarItem.addEventListener("click", () => {
 })
 
 //NEW PROJECT
+
+//PROJECT BUTTONS
 
 //new project btn
 newProjectButton.addEventListener("click", () => {
@@ -180,7 +189,7 @@ closeProjectDialogBtn.addEventListener("click", () => {
     newProjectForm.reset();
 })
 
-// submit modal to create new project
+//submit modal to create new project
 
 newProjectForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -192,18 +201,16 @@ newProjectForm.addEventListener("submit", (event) => {
     //create new project object
 
     const projectName = document.querySelector("#projTitle");
-
-    //create a new project with the name of what you just entered
    
     let nextProject = new Project(projectName.value);
 
-    //make current project equal what you entered in form
+    //update current working project
 
     thisProject = nextProject;
 
     console.log(thisProject);
 
-    // remove default DOM
+    //remove default DOM
 
     toDoHeader.removeChild;
     
@@ -224,15 +231,9 @@ newProjectForm.addEventListener("submit", (event) => {
         sidebarItem.classList.add("selectedSidebarItem");
     })
 
-    //MAKE THE THE THISPROJECT
-
-    console.log(nextProject);
+    // reset form
 
     newProjectForm.reset();
     
 })
-
-//BUTTONS
-
-//project button
 
