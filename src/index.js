@@ -96,16 +96,12 @@ function displayProject() {
         checkImage.classList.add("checkImage");
         rightDiv.appendChild(checkImage);
 
-        //check if complete and append CSS
+        //check if complete and append CSS to strikethrough 
 
         if (arrayItem.complete == true) {
             listItemDate.classList.add("completedTask");
             listItemTitle.classList.add("completedTask");
             listItemDescription.classList.add("completedTask");
-        } else {
-            listItemDate.classList.add("notCompleted");
-            listItemTitle.classList.add("notCompleted");
-            listItemDescription.classList.add("notCompleted");
         };
 
         checkImage.addEventListener("click", () => {

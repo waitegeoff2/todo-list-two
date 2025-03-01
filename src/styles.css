@@ -70,10 +70,6 @@ body {
     text-decoration: line-through;
 }
 
-.notCompleted {
-    
-}
-
 .selectedSidebarItem {
     background-color: rgb(227, 160, 227);
 }
