@@ -34,9 +34,12 @@ let thisProject = defaultProject;
 function displayProject() {
     toDoList.innerHTML = ""; 
 
+   
+
     //appending DOM items for each to-do item in project object
 
     function appendToList(arrayItem) {
+        console.log(arrayItem);
         console.log(defaultProject.list.indexOf(arrayItem));
 
 
@@ -93,18 +96,26 @@ function displayProject() {
         checkImage.classList.add("checkImage");
         rightDiv.appendChild(checkImage);
 
-        //make finished functional (YOURE NOT CHANGING THE ARRAY ITEM YOURE JUST CHANGING THE CSS,
-        // CHECK READ BOOK FUNCTION)
+        //check if complete and append CSS
+
+        if (arrayItem.complete == true) {
+            listItemDate.classList.add("completedTask");
+            listItemTitle.classList.add("completedTask");
+            listItemDescription.classList.add("completedTask");
+        } else {
+            listItemDate.classList.add("notCompleted");
+            listItemTitle.classList.add("notCompleted");
+            listItemDescription.classList.add("notCompleted");
+        };
 
         checkImage.addEventListener("click", () => {
-            if (listItemDate.classList.contains("completedTask") && listItemTitle.classList.contains("completedTask") && listItemDescription.classList.contains("completedTask")) {
-                listItemDate.classList.remove("completedTask");
-                listItemTitle.classList.remove("completedTask");
-            } else {
-                listItemDate.classList.add("completedTask");
-                listItemTitle.classList.add("completedTask");
-                listItemDescription.classList.add("completedTask");
-            };
+
+            //click button, change complete status
+
+            arrayItem.changeComplete();
+
+            displayProject();
+
         })
 
 
@@ -207,8 +218,6 @@ newProjectForm.addEventListener("submit", (event) => {
     //update current working project
 
     thisProject = nextProject;
-
-    console.log(thisProject);
 
     //remove default DOM
 
