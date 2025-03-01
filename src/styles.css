@@ -74,6 +74,16 @@ body {
     background-color: rgb(227, 160, 227);
 }
 
+dialog {
+    background: rgb(213, 223, 213);
+    position: absolute;
+    float: left;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+}
+
 
 
 
