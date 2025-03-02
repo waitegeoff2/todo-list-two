@@ -10,10 +10,13 @@ body {
 
 button {
     height: 25px;
+    background-color: rgb(167, 167, 167);
     border-style: none;
     padding: 5px;
     border-radius: 3px;
     border: 1px solid black;
+    color: black;
+    
 }
 
 dialog {
