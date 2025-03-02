@@ -17,10 +17,3 @@ class toDoItem {
 }
 
 export {toDoItem};
-
-let newItem = new toDoItem("a", "a", "a", "a");
-console.log(newItem);
-
-// newItem.changeComplete();
-
-console.log(newItem)
