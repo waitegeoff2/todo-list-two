@@ -16,6 +16,37 @@ button {
     border: 1px solid black;
 }
 
+dialog {
+    height: 180px;
+    padding: 5px;
+}
+
+.toDoDialogForm, .newProjectForm {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.newProject {
+    height: 100px;    
+}
+
+.closeDialogBtn, .closeProjDialogBtn {
+    height: 20px;
+    width: auto;
+    font-size: 8px;
+
+}
+
+.formTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: large;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
 .titleBar {
     background-color: beige;
     height: 100px;
