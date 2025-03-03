@@ -28,11 +28,13 @@ const sidebarItem = document.querySelector(".sidebarItem");
 
 let defaultProject = new Project("default");
 
-if ((JSON.parse(localStorage.getItem("default"))) == null) {
-    defaultProject =  defaultProject;
-} else {
-    defaultProject = JSON.parse(localStorage.getItem("default"));
-};
+//HAVEN'T FINISHED THE LOCAL STORAGE CODE BELOW
+
+// if ((JSON.parse(localStorage.getItem("default"))) == null) {
+//     defaultProject =  defaultProject;
+// } else {
+//     defaultProject = JSON.parse(localStorage.getItem("default"));
+// };
 
 // this is the current project we are displaying on DOM
 let thisProject = defaultProject;
