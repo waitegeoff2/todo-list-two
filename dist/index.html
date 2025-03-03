@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G's to-do list</title>
+<script defer src="main.js"></script></head>
+<body>
+    <!-- TO DO DIALOG -->
+    <dialog class = "newToDoDialog">
+        <form class = "toDoDialogForm" method="dialog">
+            <div class="formTitle">
+                <p class="formTitle">Add a To-do</p>
+                <button class="closeDialogBtn" autofocus>X</button>
+            </div>
+            <div class="formInput">
+                <label for="toDoTitle">Title:</label>
+                <input type="text" id="toDoTitle" name="toDoTitle" required>
+            </div>
+            <div class="formInput">
+                <label for="toDoDescription">Description:</label>
+                <input type="text" id="toDoDescription" name="toDoDescription" required>
+            </div>
+            <div class="formInput">
+                <!-- UPDATE THIS -->
+                <label for="toDoDueDate">Due date:</label>
+                <input type="date" id="toDoDueDate" name="toDoDueDate">
+            </div>
+            <div class="formInput">
+                <label for="toDoPriority">Priority:</label>
+                <select id="toDoPriority" name="toDoPriority" required>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">Low</option>
+                </select>
+            </div>
+            <div class="formInput">
+                <button type="submit" class="submitBtn" id="toDoSubmit">Add task</button>
+            </div>            
+        </form>
+    </dialog>
+    <!-- NEW PROJECT DIALOG -->
+    <dialog class="newProject">
+        <form method="dialog" class="newProjectForm">
+            <div class="formTitle">
+                <p class="formTitle">Add a Project</p>
+                <button class="closeProjDialogBtn" autofocus>X</button>
+            </div>
+            <div class="formInput">
+                <label for="projTitle">Project name:</label>
+                <input type="text" id="projTitle" name="projTitle" required>
+            </div>
+            <div class="formInput">
+                <button type="submit" class="submitBtn" id="projSubmit">Add project</button>
+            </div>  
+        </form>
+    </dialog>
+  
+    <!-- BODY HERE -->
+
+    <div class="titleBar">
+        <h1 class="toDoTitle">to-do list website</h1>
+    </div>
+    <div class="bodyContent">
+        <div class="projectSidebar">
+            <div class="projectSidebarTop">
+                <h1 class="allProjects">projects</h1>
+                <button class="addProject">+</button>
+            </div>
+            <h3 class="defaultSidebarItem">Default project</h3>
+        </div>
+        <div class="projectOverview">
+            <div class="toDoSection">
+                <div class="toDoLabels">
+                    <h1 class="tasks">to-dos</h1> 
+                    <button class="addToDo">Add To-Do</button>                   
+                </div>
+            </div>
+            <div class="toDoList"></div>
+        </div>
+    </div>
+</body>
+</html>
