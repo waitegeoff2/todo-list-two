@@ -26,24 +26,18 @@ const sidebarItem = document.querySelector(".sidebarItem");
 
 // DEFAULTS (load default object, if it doesn't exist, create new one)
 
-console.log((JSON.parse(localStorage.getItem("default"))));
-
 let defaultProject = new Project("default");
 
-// if ((JSON.parse(localStorage.getItem("default"))) == null) {
-//     defaultProject =  defaultProject;
-// } else {
-//     defaultProject = JSON.parse(localStorage.getItem("default"));
-// };
-
-// let projectList = [];
+if ((JSON.parse(localStorage.getItem("default"))) == null) {
+    defaultProject =  defaultProject;
+} else {
+    defaultProject = JSON.parse(localStorage.getItem("default"));
+};
 
 // this is the current project we are displaying on DOM
 let thisProject = defaultProject;
 
-console.log(typeof(thisProject));
-
-console.log(thisProject);
+//DISPLAY FUNCTION
 
 function displayProject() {
 
@@ -140,12 +134,6 @@ function displayProject() {
 
 }
 
-// function toLocalStore(project) {
-//     localStorage.setItem(project, );
-// }
-
-
-
 // **********DOM STUFF****** //
 
 //TO DO BUTTONS
@@ -186,7 +174,11 @@ toDoForm.addEventListener("submit", (event) => {
 
     thisProject.addToDo(title, description, dueDate, priority);
 
+    //send to local storage
+
     localStorage.setItem(thisProject.name, JSON.stringify(thisProject));
+
+    //reset
 
     toDoForm.reset();
 
@@ -210,7 +202,7 @@ defaultSidebarItem.addEventListener("click", () => {
 
 //NEW PROJECT
 
-//PROJECT BUTTONS
+//project BUTTONS
 
 //new project btn
 newProjectButton.addEventListener("click", () => {

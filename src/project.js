@@ -12,10 +12,6 @@ class Project {
         this.list.push(newToDo);
     }
 
-    removeToDo(ind) {
-        this.list.splice(ind, 1);
-    }
-
 }
 
 export {Project};
