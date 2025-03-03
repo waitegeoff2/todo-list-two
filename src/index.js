@@ -22,16 +22,31 @@ const newProjectForm = document.querySelector(".newProjectForm");
 const projectSidebar = document.querySelector(".projectSidebar");
 const currentProject = document.querySelector(".projectTitle");
 const defaultSidebarItem = document.querySelector(".defaultSidebarItem");
+const sidebarItem = document.querySelector(".sidebarItem");
 
-// DEFAULTS
-// let projectList = [];
+// DEFAULTS (load default object, if it doesn't exist, create new one)
+
+console.log((JSON.parse(localStorage.getItem("default"))));
+
 let defaultProject = new Project("default");
+
+// if ((JSON.parse(localStorage.getItem("default"))) == null) {
+//     defaultProject =  defaultProject;
+// } else {
+//     defaultProject = JSON.parse(localStorage.getItem("default"));
+// };
+
+// let projectList = [];
+
 // this is the current project we are displaying on DOM
 let thisProject = defaultProject;
 
-//displaying a project on the to-do page
+console.log(typeof(thisProject));
+
+console.log(thisProject);
 
 function displayProject() {
+
     toDoList.innerHTML = ""; 
 
    
@@ -119,9 +134,17 @@ function displayProject() {
 
     //go through to-do array in current working project object
 
+    JSON.parse(localStorage.getItem(thisProject.name));
+
     thisProject.list.forEach(appendToList);
 
 }
+
+// function toLocalStore(project) {
+//     localStorage.setItem(project, );
+// }
+
+
 
 // **********DOM STUFF****** //
 
@@ -163,7 +186,7 @@ toDoForm.addEventListener("submit", (event) => {
 
     thisProject.addToDo(title, description, dueDate, priority);
 
-    console.log(thisProject);
+    localStorage.setItem(thisProject.name, JSON.stringify(thisProject));
 
     toDoForm.reset();
 
@@ -178,6 +201,10 @@ toDoForm.addEventListener("submit", (event) => {
 
 defaultSidebarItem.addEventListener("click", () => {
     thisProject = defaultProject;
+    //remove classes from other sidebar items
+    document.querySelectorAll(".sidebarItem").forEach(sidebarItem => {sidebarItem.classList.remove("selectedSidebarItem")});
+    // add class on this one
+    defaultSidebarItem.classList.add("selectedSidebarItem");
     displayProject();
 })
 
@@ -233,12 +260,20 @@ newProjectForm.addEventListener("submit", (event) => {
     sidebarItem.addEventListener("click", () => {
         thisProject = nextProject;
         displayProject();
+        // remove other classes
+        document.querySelectorAll(".sidebarItem").forEach(sidebarItem => {sidebarItem.classList.remove("selectedSidebarItem")});
+        document.querySelectorAll(".defaultSidebarItem").forEach(defaultSidebarItem => {defaultSidebarItem.classList.remove("selectedSidebarItem")});
+        // add class on this one
         sidebarItem.classList.add("selectedSidebarItem");
     })
 
     // reset form
 
+    localStorage.setItem(thisProject.name, JSON.stringify(thisProject));
+
     newProjectForm.reset();
     
 })
+
+displayProject();
 
